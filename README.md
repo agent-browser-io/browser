@@ -22,6 +22,15 @@ import { VERSION } from '@agent-browser-io/browser';
 const { VERSION } = require('@agent-browser-io/browser');
 ```
 
+**CLI (interactive):**
+
+```bash
+npx @agent-browser-io/browser
+# or, after install: agent-browser
+```
+
+Uses Node.js `readline` for a REPL. Commands: `help`, `version`, `exit` (or `q`).
+
 ## Development
 
 ```bash

@@ -12,8 +12,12 @@
       "types": "./dist/cjs/index.d.ts"
     }
   },
+  "bin": {
+    "agent-browser-cli": "./bin/agent-browser-cli.cjs"
+  },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
@@ -21,6 +25,8 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
+    "@types/node": "^20.0.0",
+    "playwright": "^1.58.2",
     "typescript": "^5.0.0"
   },
   "engines": {
