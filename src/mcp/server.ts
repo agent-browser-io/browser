@@ -6,9 +6,9 @@ import { z } from "zod";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { AgentBrowser } from "../core/agent-browser/agent-browser";
-import { DefaultBrowserBackend } from "../core/browser-backend/index";
+import { PlaywrightBrowserBackend } from "../core/browser-backend/index";
 
-const backend = new DefaultBrowserBackend();
+const backend = new PlaywrightBrowserBackend();
 const browser = new AgentBrowser(backend);
 let launched = false;
 

@@ -9,4 +9,4 @@ export { createBrowserTools } from "./ai-sdk/createBrowserTools.js";
 export type { IAgentBrowser } from "./core/agent-browser/agent-browser.js";
 export { AgentBrowser } from "./core/agent-browser/agent-browser.js";
 export type { IBrowserBackend } from "./core/browser-backend/browser-backend.js";
-export { DefaultBrowserBackend } from "./core/browser-backend/index.js";
+export { PlaywrightBrowserBackend } from "./core/browser-backend/index.js";
