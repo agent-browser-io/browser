@@ -57,19 +57,6 @@ npx @agent-browser-io/browser mcp
 }
 ```
 
-If the package is installed in your project, you can use the local binary instead:
-
-```json
-{
-  "mcpServers": {
-    "agent-browser": {
-      "command": "node",
-      "args": ["node_modules/@agent-browser-io/browser/bin/index.cjs", "mcp"]
-    }
-  }
-}
-```
-
 3. Restart Cursor or reload MCP so it picks up the new server. The **agent-browser** tools will appear for the AI to use.
 
 **Other MCP clients (e.g. Claude Desktop)**
@@ -80,6 +67,30 @@ Use the same stdio command in your client’s config:
 - **Args:** `["-y", "@agent-browser-io/browser", "mcp"]` (or `["path/to/bin/index.cjs", "mcp"]`)
 
 The server speaks JSON-RPC over stdin/stdout; no extra env vars are required.
+
+## Vercel AI SDK
+
+You can use the same browser automation as **tools** with the [Vercel AI SDK](https://sdk.vercel.ai) and `generateText`. The package exposes `createBrowserTools(browser)`, which returns an object of tools you can pass to `generateText({ tools, ... })`. The `ai` package is included as a dependency.
+
+**Important:** Have the model call the `launch` tool first before other actions (navigate, getWireframe, click, etc.).
+
+**Example:**
+
+```ts
+import { createBrowserTools, AgentBrowser, DefaultBrowserBackend } from '@agent-browser-io/browser';
+import { generateText } from 'ai';
+import { openai } from '@ai-sdk/openai';
+
+const browser = new AgentBrowser(new DefaultBrowserBackend());
+const tools = createBrowserTools(browser);
+
+const { text } = await generateText({
+  model: openai('gpt-4o'),
+  tools,
+  prompt: 'Go to hackernews visit on top 3 news, and summarize their content.',
+});
+// Model will call launch, then navigate, then getWireframe, etc.
+```
 
 ## Development
 

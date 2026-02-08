@@ -5,8 +5,8 @@
 
 import * as readline from 'readline';
 import { VERSION } from '../index';
-import { AgentBrowser } from '../core/agent-browser/agent-browser';
-import { DefaultBrowserBackend } from '../core/browser-backend/index';
+import { AgentBrowser } from '../core/agent-browser/agent-browser.js';
+import { DefaultBrowserBackend } from '../core/browser-backend/index.js';
 
 const PROMPT = 'agent-browser> ';
 

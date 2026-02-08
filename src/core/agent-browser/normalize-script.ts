@@ -1,9 +1,11 @@
+/** Injected browser script for wireframe normalization. Exported as string for evaluation in the page. */
+export const NORMALIZE_SCRIPT = `
 // This script is intended to be used in the browser.
 // It is not intended to be used in node.
 (function applyWireframeMode() {
     // --- PART A: INJECT CSS STYLES (idempotent) ---
     if (!document.getElementById("wf-normalize")) {
-        const cssStyles = `
+        const cssStyles = \`
             /* FORCE GLOBAL MONOSPACE & METRICS */
             * {
                 font-family: "Courier New", Courier, monospace !important;
@@ -79,7 +81,7 @@
                 pointer-events: none;
                 font-weight: normal !important;
             }
-        `;
+        \`;
 
         const styleSheet = document.createElement("style");
         styleSheet.id = "wf-normalize";
@@ -368,7 +370,7 @@
             if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'OPTION') continue;
 
             // Collapse whitespace
-            var collapsed = rawText.replace(/\s+/g, ' ').trim();
+            var collapsed = rawText.replace(/\\s+/g, ' ').trim();
             if (!collapsed) continue;
 
             // Track first text position for ref label insertion
@@ -505,13 +507,13 @@
         // 7. Trim output
         var lines = [];
         for (var r = 0; r < gridHeight; r++) {
-            lines.push(grid[r].join('').replace(/\s+$/, ''));
+            lines.push(grid[r].join('').replace(/\\s+$/, ''));
         }
         // Drop trailing empty rows
         while (lines.length > 0 && lines[lines.length - 1] === '') {
             lines.pop();
         }
-        return lines.join('\n');
+        return lines.join('\\n');
     }
 
     function repeat(ch, count) {
@@ -522,3 +524,4 @@
 
     window.generateWireframeString = generateWireframeString;
 })();
+`;

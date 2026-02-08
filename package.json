@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "Token efficient agent browser",
   "main": "dist/cjs/index.js",
+  "type": "module",
   "module": "dist/esm/index.js",
   "types": "dist/cjs/index.d.ts",
   "exports": {
@@ -15,17 +16,15 @@
   "bin": {
     "agent-browser-cli": "./bin/index.cjs"
   },
-  "files": [
-    "dist",
-    "bin"
-  ],
+  "files": ["dist", "bin"],
   "scripts": {
-    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && cp src/core/agent-browser/normalize-script.js dist/cjs/core/agent-browser/ && cp src/core/agent-browser/normalize-script.js dist/esm/core/agent-browser/",
+    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.26.0",
+    "ai": "^6.0.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {

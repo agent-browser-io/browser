@@ -1,16 +1,5 @@
-import { readFileSync } from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import { IBrowserBackend } from "../browser-backend/browser-backend";
-
-const _scriptDir =
-    typeof __dirname !== "undefined"
-        ? __dirname
-        : path.dirname(fileURLToPath(__dirname));
-const NORMALIZE_SCRIPT = readFileSync(
-    path.join(_scriptDir, "normalize-script.js"),
-    "utf-8"
-);
+import { IBrowserBackend } from "../browser-backend/browser-backend.js";
+import { NORMALIZE_SCRIPT } from "./normalize-script.js";
 
 export interface IAgentBrowser {
     launch(): Promise<void>;

@@ -3,9 +3,9 @@
  */
 
 import { chromium, type Browser, type Page } from 'playwright';
-import type { IBrowserBackend } from './browser-backend';
+import type { IBrowserBackend } from './browser-backend.js';
 
-export class DefaultBrowserBackend implements IBrowserBackend {
+export class PlaywrightBrowserBackend implements IBrowserBackend {
     private browser: Browser | null = null;
     private page: Page | null = null;
 
