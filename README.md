@@ -1,6 +1,14 @@
 # @agent-browser-io/browser
 
-Token efficient agent browser.
+**Token efficient agent browser.**
+
+This package lets AI agents control a real browser ( navigate, click, type, interact via ASCII wireframes ) in a token-efficient way. Use it from [MCP](https://modelcontextprotocol.io) clients (e.g. Cursor, Claude Desktop) or from code with the [Vercel AI SDK](https://sdk.vercel.ai).
+
+**Ways to use:**
+
+- **MCP** — Add the included MCP server to Cursor or another MCP client so the AI can drive a browser (see [How to add MCP](#how-to-add-mcp)).
+- **Vercel AI SDK** — Use `createBrowserTools(browser)` with `generateText({ tools, ... })` in your app (see [Vercel AI SDK](#vercel-ai-sdk)).
+- **CLI** — Run the interactive CLI for manual testing (`npx @agent-browser-io/browser` or `agent-browser-cli` after install).
 
 ## Install
 
@@ -8,32 +16,9 @@ Token efficient agent browser.
 npm install @agent-browser-io/browser
 ```
 
-## Usage
-
-**ESM (TypeScript / modern Node / bundlers):**
-
-```ts
-import { VERSION } from '@agent-browser-io/browser';
-```
-
-**CommonJS:**
-
-```js
-const { VERSION } = require('@agent-browser-io/browser');
-```
-
-**CLI (interactive):**
-
-```bash
-npx @agent-browser-io/browser
-# or, after install: browser
-```
-
-Uses Node.js `readline` for a REPL. Commands: `help`, `version`, `exit` (or `q`).
-
 ## How to add MCP
 
-The package includes an MCP server that exposes browser tools over stdio (launch, navigate, wireframe, click, type, etc.). Add it to your MCP client so agents can control a real browser.
+[MCP](https://modelcontextprotocol.io) (Model Context Protocol) lets AI assistants in Cursor or Claude Desktop use browser tools over stdio. Your AI will be able to launch a browser, open URLs, get wireframes, click, type, scroll, screenshot, and more.
 
 **Run the MCP server (for testing):**
 
@@ -61,7 +46,7 @@ npx @agent-browser-io/browser mcp
 
 **Other MCP clients (e.g. Claude Desktop)**
 
-Use the same stdio command in your client’s config:
+Use the same stdio command in your client's config:
 
 - **Command:** `npx` (or full path to `node`)
 - **Args:** `["-y", "@agent-browser-io/browser", "mcp"]` (or `["path/to/bin/index.cjs", "mcp"]`)
@@ -71,6 +56,8 @@ The server speaks JSON-RPC over stdin/stdout; no extra env vars are required.
 ## Vercel AI SDK
 
 You can use the same browser automation as **tools** with the [Vercel AI SDK](https://sdk.vercel.ai) and `generateText`. The package exposes `createBrowserTools(browser)`, which returns an object of tools you can pass to `generateText({ tools, ... })`. The `ai` package is included as a dependency.
+
+**Tools:** `launch`, `navigate`, `getWireframe`, `click`, `type`, `fill`, `dblclick`, `hover`, `press`, `select`, `check`, `uncheck`, `scroll`, `screenshot`, `close`. Same toolset as the MCP server, so behavior is consistent.
 
 **Important:** Have the model call the `launch` tool first before other actions (navigate, getWireframe, click, etc.).
 
@@ -93,6 +80,8 @@ const { text } = await generateText({
 ```
 
 ## Development
+
+Requires **Node 18+**. Browser automation uses **Playwright** (included as a dev dependency).
 
 ```bash
 npm install
