@@ -64,17 +64,18 @@ You can use the same browser automation as **tools** with the [Vercel AI SDK](ht
 **Example:**
 
 ```ts
-import { createBrowserTools, AgentBrowser, DefaultBrowserBackend } from '@agent-browser-io/browser';
-import { generateText } from 'ai';
+import { createBrowserTools, AgentBrowser, PlaywrightBrowserBackend } from '@agent-browser-io/browser';
+import { generateText, stepCountIs } from 'ai';
 import { openai } from '@ai-sdk/openai';
 
-const browser = new AgentBrowser(new DefaultBrowserBackend());
+const browser = new AgentBrowser(new PlaywrightBrowserBackend());
 const tools = createBrowserTools(browser);
 
 const { text } = await generateText({
   model: openai('gpt-4o'),
   tools,
-  prompt: 'Go to hackernews visit on top 3 news, and summarize their content.',
+  stopWhen: stepCountIs(20),
+  prompt: 'Go to hackernews, visit top 3 news, and summarize their content.',
 });
 // Model will call launch, then navigate, then getWireframe, etc.
 ```
