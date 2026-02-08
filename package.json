@@ -1,6 +1,6 @@
 {
   "name": "@agent-browser-io/browser",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Token efficient agent browser",
   "main": "dist/cjs/index.js",
   "type": "module",
