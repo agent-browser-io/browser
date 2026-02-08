@@ -20,7 +20,7 @@
     "bin"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && cp src/agent-browser/normalize-script.js dist/cjs/agent-browser/ && cp src/agent-browser/normalize-script.js dist/esm/agent-browser/",
+    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && cp src/core/agent-browser/normalize-script.js dist/cjs/core/agent-browser/ && cp src/core/agent-browser/normalize-script.js dist/esm/core/agent-browser/",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run build"
   },
