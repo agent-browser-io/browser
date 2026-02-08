@@ -6,7 +6,7 @@
 import * as readline from 'readline';
 import { VERSION } from '../index';
 import { AgentBrowser } from '../core/agent-browser/agent-browser.js';
-import { DefaultBrowserBackend } from '../core/browser-backend/index.js';
+import { PlaywrightBrowserBackend } from '../core/browser-backend/index.js';
 
 const PROMPT = 'agent-browser> ';
 
@@ -18,7 +18,7 @@ async function main(): Promise<void> {
   print(`@agent-browser-io/browser v${VERSION}`);
   print('Launching browser...');
 
-  const backend = new DefaultBrowserBackend();
+  const backend = new PlaywrightBrowserBackend();
   const browser = new AgentBrowser(backend);
   await browser.launch();
 
