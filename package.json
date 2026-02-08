@@ -1,7 +1,7 @@
 {
   "name": "@agent-browser-io/browser",
-  "version": "0.1.0",
-  "description": "Browser automation and control for agent-browser-io",
+  "version": "0.2.0",
+  "description": "Token efficient agent browser",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/cjs/index.d.ts",
@@ -13,7 +13,7 @@
     }
   },
   "bin": {
-    "agent-browser-cli": "./bin/agent-browser-cli.cjs"
+    "agent-browser-cli": "./bin/index.cjs"
   },
   "files": [
     "dist",
@@ -23,6 +23,10 @@
     "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && cp src/core/agent-browser/normalize-script.js dist/cjs/core/agent-browser/ && cp src/core/agent-browser/normalize-script.js dist/esm/core/agent-browser/",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

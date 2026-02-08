@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { IBrowserBackend } from "../browser-backend/browser-backend.js";
+import { IBrowserBackend } from "../browser-backend/browser-backend";
 
 const _scriptDir =
     typeof __dirname !== "undefined"
