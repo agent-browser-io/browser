@@ -52,7 +52,7 @@ export function createBrowserTools(browser: IAgentBrowser) {
 
     getWireframe: tool({
       description:
-        "Return the ASCII wireframe of the current page. Use ref IDs from this output for click, type, fill, etc.",
+        "Return the ASCII wireframe of the current page. Use ref IDs from this output for click, type, fill, etc. Ref ids are positioned at the start of the element.",
       inputSchema: z.object({}),
       execute: wrapExecute(browser, async (b) => {
         const wireframe = await b.getWireframe();
